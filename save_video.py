@@ -6,7 +6,7 @@ from filterpy.kalman import KalmanFilter
 from numpy.linalg import inv
 import matplotlib.pyplot as plt
 
-filename = "second/first"
+filename = "at_school_1/second"
 width, height = 640, 480
 
 vout_l = cv2.VideoWriter(filename+"_L.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))

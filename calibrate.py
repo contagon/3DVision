@@ -18,6 +18,9 @@ def find_params(files, idxs, output=True):
         ret, corners = cv2.findChessboardCorners(image, board_size, None)
         if ret:
             corners = cv2.cornerSubPix(image, corners, (11,11), (-1,-1), criteria)
+            # sometimes they're upside down, fix that
+            if corners[0,0,0] > corners[-1,0,0]:
+                corners = corners[::-1]
 
             img_corners.append(corners)
             real_corners.append(idxs)
