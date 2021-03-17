@@ -39,6 +39,16 @@ def find_params(files, idxs, output=True):
         print("\nDistortion Params: ")
         print(dist.T)
 
+        mean_error = 0
+        for i in range(len(real_corners)):
+            img_corners2, _ = cv2.projectPoints(real_corners[i], rvecs[i], tvecs[i], mtx, dist)
+            error = cv2.norm(img_corners[i], img_corners2, cv2.NORM_L2)/len(img_corners2)
+            mean_error += error
+        mean_error /= len(real_corners)
+        print('\nMean Error:')
+        print(mean_error)
+
+
     return mtx, dist, img_corners
 
 if __name__ == "__main__":
