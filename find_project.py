@@ -79,8 +79,9 @@ def iterate(file_l, file_r, start, length):
     for i in range(length):
         ret, image_l = cap_l.read()
         ret, image_r = cap_r.read()
-        vout_l.write(image_l)
-        vout_r.write(image_r)
+        if save:
+            vout_l.write(image_l)
+            vout_r.write(image_r)
 
         found_r, x_r, y_r = find(image_r, x_r, y_r, base_r)
         found_l, x_l, y_l = find(image_l, x_l, y_l, base_l)
@@ -153,7 +154,8 @@ def iterate(file_l, file_r, start, length):
             f.predict(g)
 
         cv2.imshow(f'find', cv2.hconcat([image_l, image_r]))
-        vout_done.write(image_l)
+        if save:
+            vout_done.write(image_l)
 
         if cv2.waitKey(10) == ord('q'):
             break
@@ -244,23 +246,21 @@ def cov_to_ellipse(cov, n_sig=3):
     return [a, b, 0], theta
 
 if __name__ == "__main__":
-    params = np.load('at_school_1/params.npz')
+    params = np.load('images/params.npz')
     locals().update(params)
 
-    filename = "at_school_1/done"
-    width, height = 640, 480
-
-    vout_l = cv2.VideoWriter(filename+"_L.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
-    vout_r = cv2.VideoWriter(filename+"_R.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
-    vout_done = cv2.VideoWriter(filename+"_done.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
+    # for outputting
+    save = False:
+    if save:
+        filename = "images/done"
+        width, height = 640, 480
+        vout_l = cv2.VideoWriter(filename+"_L.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
+        vout_r = cv2.VideoWriter(filename+"_R.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
+        vout_done = cv2.VideoWriter(filename+"_done.avi", cv2.VideoWriter_fourcc(*'XVID'), 30, (width, height))
     
-    # iterate('at_school_1/first_L.avi',
-    #         'at_school_1/first_R.avi',
-    #         70, 200)
-    iterate(2, 4, 0, 10000)
+    iterate('images/done_L.avi',
+            'images/done_L.avi',
+            70, 200)
 
-    # params = np.load('trajectory/params.npz')
-    # locals().update(params)
-    # iterate('trajectory/BaseBall_Pitch_L.avi',
-    #         'trajectory/BaseBall_Pitch_R.avi',
-    #         451, 50)
+    # for doing live
+    # iterate(2, 4, 0, 10000)

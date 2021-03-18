@@ -1,5 +1,6 @@
 # 3DVision
-A simple stereo vision application
+A simple stereo vision application.
+All code available here: https://github.com/contagon/3DVision
 
 # Idea	generation
 The idea we chose to implement was a super-powered super-efficient ball-tracker, like an upgrade of HW4. Our goal was to track the trajectory of a ball traveling through the air and use the covariance to calculate a search area for the next step, improving tracking efficiency (small region to search for ball). To do this, we used two webcameras screwed to a rail of 80/20. We calibrated those cameras using the same method as used in HW4. Using the calibration parameters, we then found the 3D pose of the ball. We were then able to use a Kalman filter to improve the trajectory estimates and get the covariance of the trajectory of the ball. We then plotted the calculated position, next 5 timestep predictions along with their covariance rings, onto one of the stereo images. 
