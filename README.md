@@ -9,3 +9,8 @@ Some of the challenges we faced with this project had to do with calibration and
 
 # Solutions
 To fix our calibration and setup issues we simpley made sure that the cameras we were using were about 4 inches apart and calibrated the cameras in a larger room. We also made sure to keep the ball at least 6 feet away from the cameras. This allowed us to consitantly track the ball and return more accuarate z distances. To solve the challenge we had with obtaining a T matrix from the stereo calibratoin function, we had to resolve the issue with our corner lists. Once that issues was ammended, we were able to calibrate and calcuate 3D pose smoothly. 
+
+# Video Link
+Here is a link to video showing our working code. 
+
+https://youtu.be/7jo-jmPVrMU
