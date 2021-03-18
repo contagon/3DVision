@@ -11,7 +11,7 @@ g = 9.81
 dt = 1 / 4
 global dist
 dist = 150
-c_size = 15
+c_size = 30
 num_predict = 5
 
 def find(image, x_last, y_last, base):
@@ -250,7 +250,7 @@ if __name__ == "__main__":
     locals().update(params)
 
     # for outputting
-    save = False:
+    save = False
     if save:
         filename = "images/done"
         width, height = 640, 480
@@ -260,7 +260,7 @@ if __name__ == "__main__":
     
     iterate('images/done_L.avi',
             'images/done_L.avi',
-            70, 200)
+            2530, 350)
 
     # for doing live
     # iterate(2, 4, 0, 10000)
